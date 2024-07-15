@@ -1,0 +1,73 @@
+---
+title: Flow
+description: "How to use the API"
+---
+
+On this page, you will find information on how to use the API
+
+---
+
+## Fetching products
+
+Using the [`/products`](/get-all-products) endpoint, you can fetch a list of all available products and their prices.
+
+Currently, we offer the following products:
+
+- Residential
+- Premium Residential
+- ISP
+
+---
+
+## Creating a sub-user
+
+All proxy purchases must be attached to a sub-user. When creating one, you must provide the following information:
+
+- name
+- username (minimum 10 characters)
+- password (minimum 10 characters)
+- email
+
+The username and password will be used as the proxy credentials
+
+---
+
+## Purchasing a plan
+
+When you create a sub-user, you will be given a `sub_user_id`. This ID is used to purchase a plan.
+
+To purchase a plan, you need to pass the following information:
+
+- Type (`RESIDENTIAL`, `PREMIUM_RESIDENTIAL`, `PRIVATE_ISP`)
+- Quantity (1, 10, 100, etc)
+
+If you purchase a `PRIVATE_ISP` plan, you will also need to provide the following information:
+
+- Duration (`MONTHLY`, `QUATERLY`, `SEMI-ANNUALLY`, `ANNUALLY`)
+- Region (`DE`, `UK`, `US`, `AU`)
+
+---
+
+## Using your proxies
+
+### Residential & Premium Residential
+
+Build your proxy URL by using the following format:
+
+`78.46.251.50:40111:<USERNAME>-package-resi:<PASSWORD>`
+
+`78.46.251.50:40111:<USERNAME>-package-premium:<PASSWORD>`
+
+If you want to use specific countries, states, cities, you can use the `Location` endpoints to get the correct values.
+
+#### Example
+
+`78.46.251.50:40111:<USERNAME>-package-premium-country-US:<PASSWORD>`
+
+`78.46.251.50:40111:<USERNAME>-package-premium-country-US-state-california-city-san_francisco:<PASSWORD>`
+
+---
+
+### ISP
+
+ISP plans are a bit different, you will need to [**fetch the sub-user**](/sub-user/retrieve-a-specific-sub-user) to and parse the `proxyList` field which is an array of all their proxies.
