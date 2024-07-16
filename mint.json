@@ -5,6 +5,9 @@
     "dark": "/images/logo.jpg",
     "light": "/images/logo.jpg"
   },
+  "api": {
+    "baseUrl": "https://www.flashproxy.io"
+  },
   "favicon": "/logo.jpg",
   "colors": {
     "primary": "#7E5BDC",
