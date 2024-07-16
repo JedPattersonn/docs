@@ -1,11 +1,11 @@
 {
   "$schema": "https://mintlify.com/schema.json",
-  "name": "Starter Kit",
+  "name": "Flashproxy Reseller",
   "logo": {
     "dark": "/images/logo.jpg",
     "light": "/images/logo.jpg"
   },
-  "favicon": "/favicon.svg",
+  "favicon": "/logo.jpg",
   "colors": {
     "primary": "#7E5BDC",
     "light": "#7E5BDC",
