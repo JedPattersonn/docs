@@ -317,10 +317,10 @@
         }
       }
     },
-    "/api/reseller/states/{state_id}": {
+    "/api/reseller/states/{country_iso}": {
       "get": {
-        "summary": "Retrieve states",
-        "description": "Returns a list of cities available for the specified proxy type, country, and state.",
+        "summary": "Retrieve states for a country",
+        "description": "Returns a list of states available for the specified proxy type and country.",
         "parameters": [
           {
             "in": "header",
@@ -333,21 +333,12 @@
           },
           {
             "in": "path",
-            "name": "state_id",
+            "name": "country_iso",
             "required": true,
             "schema": {
               "type": "string"
             },
-            "description": "State ID or 'undefined' for country-wide search"
-          },
-          {
-            "in": "query",
-            "name": "country_id",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "description": "Country ID (ISO2 code)"
+            "description": "Country ISO2 code"
           },
           {
             "in": "query",
@@ -357,12 +348,12 @@
               "type": "string",
               "enum": ["PREMIUM_RESIDENTIAL", "RESIDENTIAL", "ISP_PRIVATE"]
             },
-            "description": "Type of proxy to get cities for"
+            "description": "Type of proxy to get states for"
           }
         ],
         "responses": {
           "200": {
-            "description": "Successful response with list of cities",
+            "description": "Successful response with list of states",
             "content": {
               "application/json": {
                 "schema": {
@@ -379,10 +370,7 @@
                       "value": {
                         "type": "string"
                       },
-                      "state_name": {
-                        "type": "string"
-                      },
-                      "country_iso2": {
+                      "iso2": {
                         "type": "string"
                       }
                     }
