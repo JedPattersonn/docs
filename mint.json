@@ -8,7 +8,7 @@
   "api": {
     "baseUrl": "https://www.flashproxy.io"
   },
-  "favicon": "/logo.jpg",
+  "favicon": "/images/logo.jpg",
   "colors": {
     "primary": "#7E5BDC",
     "light": "#7E5BDC",

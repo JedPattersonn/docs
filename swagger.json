@@ -5,37 +5,28 @@
     "version": "1.0"
   },
   "paths": {
-    "/api/reseller/cities/{state_id}": {
+    "/api/reseller/cities/{country_iso_or_id}": {
       "get": {
         "summary": "Retrieve cities",
         "description": "Returns a list of cities available for the specified proxy type, country, and state.",
         "parameters": [
           {
-            "in": "header",
-            "name": "Authorization",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "description": "API key for authentication (Bearer token)"
-          },
-          {
             "in": "path",
-            "name": "state_id",
+            "name": "country_iso_or_id",
             "required": true,
             "schema": {
               "type": "string"
             },
-            "description": "State ID or 'undefined' for country-wide search"
+            "description": "Country ISO code for PREMIUM_RESIDENTIAL and RESIDENTIAL, or country ID for ISP_PRIVATE"
           },
           {
             "in": "query",
-            "name": "country_id",
-            "required": true,
+            "name": "state",
+            "required": false,
             "schema": {
               "type": "string"
             },
-            "description": "Country ID (ISO2 code)"
+            "description": "State value for PREMIUM_RESIDENTIAL and RESIDENTIAL, or state ID for ISP_PRIVATE (optional)"
           },
           {
             "in": "query",
@@ -87,8 +78,11 @@
                   "type": "object",
                   "properties": {
                     "error": {
+                      "type": "boolean"
+                    },
+                    "message": {
                       "type": "string",
-                      "example": "Invalid proxy type"
+                      "example": "Country ISO or ID is required"
                     }
                   }
                 }
