@@ -22,7 +22,7 @@
           {
             "in": "query",
             "name": "state",
-            "required": false,
+            "required": true,
             "schema": {
               "type": "string"
             },
