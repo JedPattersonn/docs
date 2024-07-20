@@ -26,7 +26,7 @@
             "schema": {
               "type": "string"
             },
-            "description": "State value for PREMIUM_RESIDENTIAL and RESIDENTIAL, or state ID for ISP_PRIVATE (optional)"
+            "description": "State value for PREMIUM_RESIDENTIAL and RESIDENTIAL, or state ID for ISP_PRIVATE"
           },
           {
             "in": "query",
