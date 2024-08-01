@@ -22,11 +22,11 @@
           {
             "in": "query",
             "name": "state",
-            "required": true,
+            "required": false,
             "schema": {
               "type": "string"
             },
-            "description": "State value for PREMIUM_RESIDENTIAL and RESIDENTIAL, or state ID for ISP_PRIVATE"
+            "description": "State name for PREMIUM_RESIDENTIAL and RESIDENTIAL, or state ID for ISP_PRIVATE (optional)"
           },
           {
             "in": "query",
@@ -439,7 +439,8 @@
                     ]
                   },
                   "quantity": {
-                    "type": "number"
+                    "type": "number",
+                    "description": "The amount of GB to purchase."
                   },
                   "region": {
                     "type": "string",
@@ -817,6 +818,149 @@
                   "properties": {
                     "error": {
                       "type": "object"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/reseller/sub-user/{sub_user_id}/update/{plan_id}": {
+      "put": {
+        "summary": "Update a proxy plan's bandwidth",
+        "description": "Allows a reseller to update the bandwidth of a specific proxy plan for a sub-user. Enter the new bandwidth quantity in GB. The value must be lower than the current value, you will be credited for the difference. If you would like to increase the bandwidth for the plan, use the /purchase endpoint.",
+        "tags": ["Sub-User", "Plan"],
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "API key for authentication (Bearer token)"
+          },
+          {
+            "in": "path",
+            "name": "sub_user_id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "The ID of the sub-user"
+          },
+          {
+            "in": "path",
+            "name": "plan_id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "The ID of the plan to update"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["quantity"],
+                "properties": {
+                  "quantity": {
+                    "type": "number",
+                    "minimum": 0,
+                    "description": "The new bandwidth quantity in GB"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successfully updated the plan's bandwidth",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request (validation error or invalid update request)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "oneOf": [
+                        {
+                          "type": "object"
+                        },
+                        {
+                          "type": "string"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized (no API key or invalid API key)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found (sub-user, plan, or prices not found)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server error (failed to update bandwidth or internal server error)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
                     }
                   }
                 }

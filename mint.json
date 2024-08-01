@@ -43,6 +43,7 @@
         "sub-user/retrieve-all-sub-users",
         "sub-user/retrieve-a-specific-sub-user",
         "sub-user/purchase-a-proxy-plan",
+        "sub-user/update-plan",
         "sub-user/remove-a-plan"
       ]
     }
