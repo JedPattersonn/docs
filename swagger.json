@@ -435,8 +435,10 @@
                     "enum": [
                       "RESIDENTIAL",
                       "PREMIUM_RESIDENTIAL",
-                      "ISP_PRIVATE"
-                    ]
+                      "ISP_PRIVATE",
+                      "ISP_SHARED"
+                    ],
+                    "description": "The type of proxy plan to purchase."
                   },
                   "quantity": {
                     "type": "number",
@@ -444,11 +446,18 @@
                   },
                   "region": {
                     "type": "string",
-                    "enum": ["DE", "UK", "US", "AU"]
+                    "enum": ["DE", "UK", "US", "AU"],
+                    "description": "The region of the proxy plan to purchase. ISP_PRIVATE only."
                   },
                   "duration": {
                     "type": "string",
-                    "enum": ["MONTHLY", "QUATERLY", "SEMI-ANNUALLY", "ANNUALLY"]
+                    "enum": [
+                      "MONTHLY",
+                      "QUATERLY",
+                      "SEMI-ANNUALLY",
+                      "ANNUALLY"
+                    ],
+                    "description": "The duration of the proxy plan to purchase. ISP_PRIVATE only."
                   }
                 }
               }
